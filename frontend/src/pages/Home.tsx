@@ -20,41 +20,45 @@ function Home() {
     };
 
     return (
-        <div className="home">
-            <label className="input">
-                <svg
-                    className="h-[1em] opacity-50"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                >
-                    <g
-                        strokeLinejoin="round"
-                        strokeLinecap="round"
-                        strokeWidth="2.5"
-                        fill="none"
-                        stroke="currentColor"
+        <>
+            <div className="justify-center flex items-center gap-1 p-2">
+                <label className="input">
+                    <svg
+                        className="h-[1em] opacity-50"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
                     >
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.3-4.3"></path>
-                    </g>
-                </svg>
-                <input
-                    type="search"
-                    className="grow"
-                    placeholder="Search for a movie"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            handleSearch();
-                        }
-                    }}
-                />
-            </label>
-            <button className="btn btn-primary" onClick={handleSearch}>
-                Search
-            </button>
-            <div className="movie-grid">
+                        <g
+                            strokeLinejoin="round"
+                            strokeLinecap="round"
+                            strokeWidth="2.5"
+                            fill="none"
+                            stroke="currentColor"
+                        >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input
+                        type="search"
+                        className="grow"
+                        placeholder="Search for a movie"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                handleSearch();
+                            }
+                        }}
+                    />
+                </label>
+                <button className="btn btn-primary" onClick={handleSearch}>
+                    Search
+                </button>
+            </div>
+
+            <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {/* Filtering on the UI  */}
                 {movies
                     .filter((movie) =>
                         movie.title
@@ -65,7 +69,7 @@ function Home() {
                         <MovieCard movie={movie} key={movie.id} />
                     ))}
             </div>
-        </div>
+        </>
     );
 }
 
