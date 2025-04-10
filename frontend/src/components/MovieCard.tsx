@@ -8,23 +8,28 @@ function MovieCard({ movie }: Props) {
     }
 
     return (
-        <div className="movie-card">
-            <div className="movie-poster">
-                <img src={movie.url} alt={movie.title} />
-                <div className="movie-overlay">
-                    <button
-                        className="btn favorite-btn"
-                        onClick={onFavoriteClick}
-                    >
-                        🤍
-                    </button>
+        <>
+            <div className="card flex shadow-sm">
+                <figure>
+                    <img
+                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                        alt={movie.title}
+                    />
+                </figure>
+                <div className="card-body">
+                    <h2 className="card-title">{movie.title}</h2>
+                    <p>{movie.release_date}</p>
+                    <div className="card-actions justify-end">
+                        <button
+                            className="btn btn-ghost"
+                            onClick={onFavoriteClick}
+                        >
+                            🤍
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div className="movie-info">
-                <h3 className="movie-title">{movie.title}</h3>
-                <p>{movie.release_date}</p>
-            </div>
-        </div>
+        </>
     );
 }
 
