@@ -1,19 +1,35 @@
 import MovieCard from "../components/MovieCard";
-import { useState } from "react";
+import { searchMovies, getPopularMovies } from "../services/api";
+import { useState, useEffect } from "react";
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
 
-    const movies: Record<string, any>[] = [
-        { id: 1, title: "John Wick", release_date: "2020" },
-        {
-            id: 2,
-            title: "Harry Potter and the Sorcerer's Stone",
-            release_date: "2010",
-        },
-        { id: 3, title: "The Godfather", release_date: "1978" },
-        { id: 4, title: "The Matrix", release_date: "1998" },
-    ];
+    // const movies: Record<string, any>[] = [
+    //     { id: 1, title: "John Wick", release_date: "2020" },
+    //     {
+    //         id: 2,
+    //         title: "Harry Potter and the Sorcerer's Stone",
+    //         release_date: "2010",
+    //     },
+    //     { id: 3, title: "The Godfather", release_date: "1978" },
+    //     { id: 4, title: "The Matrix", release_date: "1998" },
+    // ];
+
+    const [movies, setMovies] = useState<Record<string, any>[]>([]);
+
+    useEffect(() => {
+        const fetchMovies = async () => {
+            try {
+                const popularMovies = await getPopularMovies();
+                setMovies(popularMovies);
+            } catch (error) {
+                console.error("Error fetching popular movies:", error);
+            }
+        };
+
+        fetchMovies();
+    }, []);
 
     const handleSearch = () => {
         alert(searchQuery);
